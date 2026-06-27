@@ -2,222 +2,1323 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Top 10 Football Players & Tournament Registration</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Football Legends Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
-    * {
-      box-sizing: border-box;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:   #00C853;
+      --green-d: #00962e;
+      --grass:   #0a1f0d;
+      --pitch:   #0d2b12;
+      --card:    #112116;
+      --card-b:  #1a3320;
+      --border:  #1f3d27;
+      --text:    #e8f5ea;
+      --muted:   #7aab84;
+      --dim:     #3d6645;
+      --accent:  #f5c518;
+      --danger:  #ff4444;
+      --radius:  10px;
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #0d1b2a;
-      margin: 0;
-      padding: 0;
-      color: #f1f1f1;
+      font-family: 'Inter', sans-serif;
+      background: var(--grass);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
     }
 
+    /* ── HEADER ── */
     header {
-      background: linear-gradient(to right, #1e1e2f, #2d2d44);
-      color: #d4af37;
-      padding: 2em 1em;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      background: var(--pitch);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 2px;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .players {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: auto;
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
     }
 
-    .player {
-      background: #1b263b;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .player:hover {
-      transform: translateY(-5px);
+    .user-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
     }
 
-    .player img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
+    .user-btn:hover { border-color: var(--green); }
+
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--danger);
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
-    .player p {
-      margin: 0.5em;
-      color: #f8f9fa;
+    .live-dot {
+      width: 7px; height: 7px;
+      background: var(--danger);
+      border-radius: 50%;
+      animation: pulse 1.2s ease-in-out infinite;
     }
 
-    .achievement {
-      font-size: 0.9em;
-      color: #c0c0c0;
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
     }
 
-    form {
-      background: #1b263b;
-      max-width: 600px;
-      margin: 60px auto;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    /* ── NAV ── */
+    nav {
+      background: var(--pitch);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
     }
 
-    form h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #d4af37;
-    }
+    nav::-webkit-scrollbar { display: none; }
 
-    form input, form select, form button {
-      width: 100%;
-      padding: 12px;
-      margin: 12px 0;
-      font-size: 1em;
-      border-radius: 8px;
-      border: 1px solid #495670;
-      background-color: #f1f1f1;
-      color: #1b263b;
-    }
-
-    form input:focus, form select:focus {
-      outline: none;
-      border-color: #d4af37;
-      box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
-    }
-
-    form button {
-      background: linear-gradient(to right, #d4af37, #b8952c);
-      color: #1b263b;
-      font-weight: bold;
+    .nav-tab {
+      padding: 14px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
       border: none;
-      transition: background 0.3s ease;
+      background: transparent;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+      transition: color 0.2s, border-color 0.2s;
     }
 
-    form button:hover {
-      background: linear-gradient(to right, #b8952c, #a48220);
+    .nav-tab:hover  { color: var(--text); }
+    .nav-tab.active { color: var(--green); border-bottom-color: var(--green); }
+
+    .nav-tab svg { vertical-align: -3px; margin-right: 6px; }
+
+    /* ── MAIN ── */
+    main { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ── HERO BANNER ── */
+    .hero {
+      background: linear-gradient(135deg, var(--pitch) 0%, #0c2e14 60%, #0a1a0c 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2em;
-      }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(0,200,83,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
 
-      form {
-        margin: 30px 20px;
-      }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 6vw, 64px);
+      letter-spacing: 3px;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 span { color: var(--green); }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-head h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-head h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px; height: 20px;
+      background: var(--green);
+      border-radius: 2px;
+    }
+
+    /* ── PLAYER GRID ── */
+    .player-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 14px;
+      margin-bottom: 2rem;
+    }
+
+    .player-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1rem;
+      cursor: pointer;
+      transition: transform 0.18s, border-color 0.18s, background 0.18s;
+      position: relative;
+    }
+
+    .player-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--green);
+      background: var(--card-b);
+    }
+
+    .rank-num {
+      position: absolute;
+      top: 10px; right: 12px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      color: var(--border);
+      line-height: 1;
+    }
+
+    .avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 17px;
+      margin-bottom: 12px;
+      border: 2px solid var(--border);
+    }
+
+    .player-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+      color: var(--text);
+    }
+
+    .player-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .stat-pills {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
+
+    .pill-green { background: rgba(0,200,83,0.15); color: var(--green); }
+    .pill-gold  { background: rgba(245,197,24,0.15); color: var(--accent); }
+    .pill-dim   { background: rgba(255,255,255,0.06); color: var(--muted); }
+
+    .rating-bar {
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .rating-fill {
+      height: 100%;
+      background: var(--green);
+      border-radius: 2px;
+      transition: width 0.6s ease;
+    }
+
+    .rating-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--dim);
+      margin-top: 4px;
+    }
+
+    /* ── LIVE SCORES ── */
+    .matches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .match-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+
+    .match-league {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .match-body {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .match-team {
+      flex: 1;
+      text-align: center;
+    }
+
+    .team-icon {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      margin: 0 auto 6px;
+      border: 1px solid var(--border);
+    }
+
+    .team-label { font-size: 13px; font-weight: 600; color: var(--text); }
+
+    .match-score-wrap { text-align: center; min-width: 80px; }
+
+    .match-score {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 4px;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .match-status {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 4px;
+    }
+
+    .status-live { background: rgba(255,68,68,0.18); color: var(--danger); }
+    .status-ft   { background: rgba(255,255,255,0.06); color: var(--muted); }
+    .status-up   { background: rgba(0,200,83,0.12); color: var(--green); }
+
+    /* ── COMPARE ── */
+    .compare-selects {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    select {
+      flex: 1;
+      min-width: 180px;
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+    }
+
+    select:focus { outline: none; border-color: var(--green); }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 560px) { .compare-grid { grid-template-columns: 1fr; } }
+
+    .compare-col {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+
+    .compare-col.winner { border-color: var(--green); background: rgba(0,200,83,0.06); }
+
+    .winner-badge {
+      display: inline-block;
+      background: rgba(0,200,83,0.2);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .cmp-player-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.25rem;
+    }
+
+    .stat-cmp-row { margin-bottom: 12px; }
+
+    .stat-cmp-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .stat-cmp-label strong { color: var(--text); }
+
+    .bar-track {
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.5s ease;
+    }
+
+    .bar-win  { background: var(--green); }
+    .bar-lose { background: var(--dim); }
+
+    /* ── AI CHAT ── */
+    .ai-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .ai-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ai-messages {
+      padding: 1.25rem;
+      min-height: 220px;
+      max-height: 380px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .ai-messages::-webkit-scrollbar { width: 4px; }
+    .ai-messages::-webkit-scrollbar-track { background: transparent; }
+    .ai-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .msg {
+      max-width: 88%;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .msg-user {
+      align-self: flex-end;
+      background: rgba(0,200,83,0.15);
+      color: var(--text);
+      border-bottom-right-radius: 3px;
+    }
+
+    .msg-ai {
+      align-self: flex-start;
+      background: var(--card-b);
+      color: var(--text);
+      border-bottom-left-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .msg-placeholder { color: var(--muted); font-size: 14px; align-self: center; margin-top: 2rem; text-align: center; }
+
+    .typing-indicator {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      align-self: flex-start;
+      padding: 12px 16px;
+      background: var(--card-b);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      border-bottom-left-radius: 3px;
+    }
+
+    .typing-dot {
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: bounce 1.2s ease-in-out infinite;
+    }
+
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-5px); }
+    }
+
+    .ai-input-row {
+      display: flex;
+      gap: 10px;
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--pitch);
+    }
+
+    .ai-input {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+    }
+
+    .ai-input:focus { outline: none; border-color: var(--green); }
+    .ai-input::placeholder { color: var(--dim); }
+
+    .quick-prompts {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .quick-btn {
+      padding: 7px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .quick-btn:hover { border-color: var(--green); color: var(--green); }
+
+    /* ── AUTH / PROFILE ── */
+    .auth-wrap { max-width: 420px; margin: 0 auto; }
+
+    .auth-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+    }
+
+    .auth-tabs {
+      display: flex;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 1.75rem;
+    }
+
+    .auth-tab {
+      flex: 1;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      background: transparent;
+      color: var(--muted);
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .auth-tab.active { background: var(--green); color: #000; }
+
+    .form-group {
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .form-group input, .form-group select {
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--grass);
+      color: var(--text);
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--green);
+    }
+
+    .form-group input::placeholder { color: var(--dim); }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .btn:hover { border-color: var(--green); color: var(--green); }
+
+    .btn-primary {
+      background: var(--green);
+      border-color: var(--green);
+      color: #000;
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    .btn-primary:hover { background: var(--green-d); border-color: var(--green-d); color: #000; }
+
+    .btn-danger { border-color: var(--danger); color: var(--danger); margin-top: 10px; }
+    .btn-danger:hover { background: rgba(255,68,68,0.1); }
+
+    .profile-banner {
+      background: linear-gradient(135deg, var(--card-b), var(--card));
+      border: 1px solid var(--green);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .profile-avatar {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(0,200,83,0.2);
+      border: 2px solid var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+
+    .profile-info h3 { font-size: 16px; font-weight: 600; }
+    .profile-info p  { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    .verified-chip {
+      display: inline-block;
+      background: rgba(0,200,83,0.15);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-left: auto;
+    }
+
+    .profile-section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .profile-section-card h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+    /* ── REGISTRATION (inside top-10) ── */
+    .reg-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--dim);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Top 10 Football Players</h1>
-  </header>
-
-  <div class="players">
-    <div class="player">
-      <img src="https://hips.hearstapps.com/hmg-prod/images/cristiano-ronaldo-of-portugal-reacts-as-he-looks-on-during-news-photo-1725633476.jpg" alt="Cristiano Ronaldo">
-      <p>Cristiano Ronaldo</p>
-      <p class="achievement">5x Ballon d'Or, All-time top scorer UEFA Champions League</p>
-    </div>
-    <div class="player">
-      <img src="https://static0.givemesportimages.com/wordpress/wp-content/uploads/2025/01/mixcollage-03-jan-2025-11-59-am-1449.jpg" alt="Lionel Messi">
-      <p>Lionel Messi</p>
-      <p class="achievement">8x Ballon d'Or, FIFA World Cup 2022 Champion</p>
-    </div>
-    <div class="player">
-      <img src="https://tmssl.akamaized.net/images/foto/galerie/neymar-brazil-2022-1668947300-97010.jpg" alt="Neymar">
-      <p>Neymar</p>
-      <p class="achievement">Olympic Gold Medalist, Top scorer Brazil national team</p>
-    </div>
-    <div class="player">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Picture_with_Mbapp%C3%A9_%28cropped%29.jpg" alt="Mbappé">
-      <p>Kylian Mbappé</p>
-      <p class="achievement">FIFA World Cup 2018 Winner, Golden Boot 2022</p>
-    </div>
-    <div class="player">
-      <img src="https://images2.minutemediacdn.com/image/upload/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/shape/cover/sport/let_kevin_de_bruyne_talk___the_turning_point-1ab24a5f934c2722495780a848aee4dc.jpg" alt="Kevin De Bruyne">
-      <p>Kevin De Bruyne</p>
-      <p class="achievement">Premier League Playmaker of the Season (3x)</p>
-    </div>
-    <div class="player">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/ManCity20240722-031_%28cropped%29.jpg/1200px-ManCity20240722-031_%28cropped%29.jpg" alt="Erling Haaland">
-      <p>Erling Haaland</p>
-      <p class="achievement">Premier League Golden Boot 2022–23, UCL top scorer</p>
-    </div>
-    <div class="player">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Mohamed_Salah_2018.jpg/330px-Mohamed_Salah_2018.jpg" alt="Mohamed Salah">
-      <p>Mohamed Salah</p>
-      <p class="achievement">2x Premier League Golden Boot, African Player of the Year</p>
-    </div>
-    <div class="player">
-      <img src="https://news.cgtn.com/news/2022-12-18/Luka-Modric-s-last-World-Cup-ends-with-a-bang-as-Croatia-aim-for-more-1fRdw1RvLva/img/5c37f80f18cb490faa2ab6cc8c524f7f/5c37f80f18cb490faa2ab6cc8c524f7f.jpeg" alt="Luka Modric">
-      <p>Luka Modric</p>
-      <p class="achievement">Ballon d'Or 2018, FIFA World Cup runner-up 2018</p>
-    </div>
-    <div class="player">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/2019147183134_2019-05-27_Fussball_1.FC_Kaiserslautern_vs_FC_Bayern_M%C3%BCnchen_-_Sven_-_1D_X_MK_II_-_0228_-_B70I8527_%28cropped%29.jpg" alt="Robert Lewandowski">
-      <p>Robert Lewandowski</p>
-      <p class="achievement">2x FIFA Best Men's Player, Bundesliga top scorer (7x)</p>
-    </div>
-    <div class="player">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/20160604_AUT_NED_8876_%28cropped%29.jpg" alt="Virgil van Dijk">
-      <p>Virgil van Dijk</p>
-      <p class="achievement">UEFA Men's Player of the Year 2019, UCL Winner</p>
-    </div>
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">⚽</div>
+    Football Legends Hub
   </div>
+  <div class="header-right">
+    <div class="live-indicator">
+      <div class="live-dot"></div>
+      2 Live
+    </div>
+    <button class="user-btn" onclick="switchSection('profile')">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+      <span id="header-user-label">Login</span>
+    </button>
+  </div>
+</header>
 
-  <form id="registrationForm">
-    <h2>Register for the Tournament</h2>
-    <input type="text" id="name" placeholder="Full Name" required />
-    <input type="email" id="email" placeholder="Email Address" required />
-    <input type="tel" id="phone" placeholder="Phone Number" required />
-    <input type="number" id="age" placeholder="Age" min="10" max="60" required />
-    <input type="text" id="team" placeholder="Team Name" required />
-    <select id="position" required>
-      <option value="">Preferred Position</option>
-      <option value="Forward">Forward</option>
-      <option value="Midfielder">Midfielder</option>
-      <option value="Defender">Defender</option>
-      <option value="Goalkeeper">Goalkeeper</option>
-    </select>
-    <button type="submit">Register Now</button>
-  </form>
+<!-- NAV -->
+<nav>
+  <button class="nav-tab active" onclick="switchSection('top10')" id="tab-top10">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7L2 9l7-1z"/>
+    </svg>
+    Top 10 Players
+  </button>
+  <button class="nav-tab" onclick="switchSection('live')" id="tab-live">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z"/>
+    </svg>
+    Live Scores
+  </button>
+  <button class="nav-tab" onclick="switchSection('compare')" id="tab-compare">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M18 4l3 3-3 3M3 17l3 3 3-3M21 7H9M3 17h12"/>
+    </svg>
+    Compare Players
+  </button>
+  <button class="nav-tab" onclick="switchSection('ai')" id="tab-ai">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M12 2a8 8 0 0 1 8 8c0 5-8 12-8 12S4 15 4 10a8 8 0 0 1 8-8z"/>
+      <circle cx="12" cy="10" r="2"/>
+    </svg>
+    AI Chat
+  </button>
+  <button class="nav-tab" onclick="switchSection('profile')" id="tab-profile">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+    </svg>
+    Profile
+  </button>
+</nav>
 
-  <script>
-    document.getElementById('registrationForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+<main>
 
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const phone = document.getElementById('phone').value;
-      const age = document.getElementById('age').value;
-      const team = document.getElementById('team').value;
-      const position = document.getElementById('position').value;
+  <!-- ── TOP 10 ── -->
+  <section class="section active" id="section-top10">
+    <div class="hero">
+      <div class="hero-eyebrow">Season 2024 / 25</div>
+      <h1>World's <span>Best</span> Players</h1>
+      <p>The definitive ranking of football's greatest talents — updated every matchday.</p>
+    </div>
+    <div class="section-head">
+      <h2>Top 10 Rankings</h2>
+    </div>
+    <div class="player-grid" id="playerGrid"></div>
 
-      if (!name || !email || !phone || !age || !team || !position) {
-        alert("Please fill out all fields.");
-        return;
-      }
+    <!-- REGISTRATION -->
+    <div class="reg-card">
+      <div class="section-head" style="margin-bottom:1.25rem">
+        <h2>Player Registration</h2>
+      </div>
+      <div class="form-row" style="margin-bottom:14px">
+        <div class="form-group">
+          <label>Full name</label>
+          <input type="text" id="reg-name" placeholder="Your full name" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="reg-email" placeholder="you@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Position</label>
+          <select id="reg-pos">
+            <option value="">Select position</option>
+            <option>Goalkeeper</option>
+            <option>Defender</option>
+            <option>Midfielder</option>
+            <option>Forward</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Favourite player</label>
+          <select id="reg-fav"></select>
+        </div>
+        <div class="form-group">
+          <label>Team name</label>
+          <input type="text" id="reg-team" placeholder="FC Legends United" />
+        </div>
+        <div class="form-group">
+          <label>Country</label>
+          <input type="text" id="reg-country" placeholder="Your country" />
+        </div>
+      </div>
+      <button class="btn btn-primary" style="width:auto;padding:10px 28px" onclick="submitRegistration()">Register now</button>
+      <div id="reg-msg" style="margin-top:10px;font-size:13px;color:var(--green);display:none">✅ Registered successfully! Welcome to Football Legends Hub.</div>
+    </div>
+  </section>
 
-      alert(`Thanks, ${name}! You’ve successfully registered for the tournament.\nTeam: ${team}\nPosition: ${position}`);
-      this.reset();
+  <!-- ── LIVE SCORES ── -->
+  <section class="section" id="section-live">
+    <div class="section-head">
+      <h2>Live & Recent Matches</h2>
+      <div class="live-indicator"><div class="live-dot"></div> 2 matches live</div>
+    </div>
+    <div class="matches-grid" id="matchGrid"></div>
+  </section>
+
+  <!-- ── COMPARE ── -->
+  <section class="section" id="section-compare">
+    <div class="section-head"><h2>Compare Players</h2></div>
+    <div class="compare-selects">
+      <select id="cmp1" onchange="renderCompare()"></select>
+      <select id="cmp2" onchange="renderCompare()"></select>
+    </div>
+    <div class="compare-grid" id="compareGrid"></div>
+  </section>
+
+  <!-- ── AI CHAT ── -->
+  <section class="section" id="section-ai">
+    <div class="section-head"><h2>AI Football Assistant</h2></div>
+    <div class="ai-wrap">
+      <div class="ai-header">
+        <svg width="16" height="16" fill="var(--green)" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 3a3 3 0 1 1-3 3 3 3 0 0 1 3-3zm0 14.2a7.2 7.2 0 0 1-6-3.22c.03-2 4-3.1 6-3.1s5.97 1.1 6 3.1a7.2 7.2 0 0 1-6 3.22z"/></svg>
+        Claude AI — Football Expert
+      </div>
+      <div class="ai-messages" id="aiMessages">
+        <div class="msg-placeholder">Ask me anything about players, clubs, tactics, or football history.</div>
+      </div>
+      <div class="ai-input-row">
+        <input class="ai-input" id="aiInput" placeholder="e.g. Who has the best left foot in football history?" onkeydown="if(event.key==='Enter')sendAI()" />
+        <button class="btn btn-primary" style="width:auto;padding:10px 20px;margin-top:0" onclick="sendAI()">Send</button>
+      </div>
+    </div>
+    <div class="quick-prompts">
+      <button class="quick-btn" onclick="quickAsk('Compare Mbappé and Haaland as goal scorers')">Mbappé vs Haaland</button>
+      <button class="quick-btn" onclick="quickAsk('Who is the best player in the world in 2025?')">Best player 2025</button>
+      <button class="quick-btn" onclick="quickAsk('Explain the 4-3-3 formation and its strengths')">4-3-3 formation</button>
+      <button class="quick-btn" onclick="quickAsk('Who has won the most Ballon d\'Or awards?')">Ballon d'Or history</button>
+      <button class="quick-btn" onclick="quickAsk('What makes Vinicius Jr. such a dangerous winger?')">Vinicius Jr. style</button>
+    </div>
+  </section>
+
+  <!-- ── PROFILE ── -->
+  <section class="section" id="section-profile">
+    <div class="section-head"><h2>My Profile</h2></div>
+    <div id="profileContent"></div>
+  </section>
+
+</main>
+
+<footer>
+  ⚽ Football Legends Hub &nbsp;·&nbsp; Built with ❤️ for football fans &nbsp;·&nbsp; Data for demo purposes
+</footer>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────
+const players = [
+  { name:"Erling Haaland",   club:"Manchester City",  nation:"NOR", pos:"ST", goals:36, assists:8,  passes:72, dribbles:58, rating:94, col:["#1a2f3a","#56b4e3"] },
+  { name:"Kylian Mbappé",    club:"Real Madrid",      nation:"FRA", pos:"ST", goals:31, assists:9,  passes:68, dribbles:78, rating:93, col:["#1e2033","#8385f7"] },
+  { name:"Vinicius Jr.",     club:"Real Madrid",      nation:"BRA", pos:"LW", goals:24, assists:14, passes:65, dribbles:89, rating:92, col:["#1f2e1a","#6fd46f"] },
+  { name:"Rodri",            club:"Manchester City",  nation:"ESP", pos:"CM", goals:7,  assists:12, passes:94, dribbles:45, rating:91, col:["#1e2a1e","#00C853"] },
+  { name:"Jude Bellingham",  club:"Real Madrid",      nation:"ENG", pos:"CM", goals:19, assists:11, passes:81, dribbles:73, rating:90, col:["#2a1e1a","#e87040"] },
+  { name:"Lionel Messi",     club:"Inter Miami",      nation:"ARG", pos:"RW", goals:21, assists:18, passes:88, dribbles:82, rating:90, col:["#1a1e2e","#b0c4f5"] },
+  { name:"Lamine Yamal",     club:"FC Barcelona",     nation:"ESP", pos:"RW", goals:15, assists:17, passes:76, dribbles:85, rating:88, col:["#2a1a1a","#d96b6b"] },
+  { name:"Pedri",            club:"FC Barcelona",     nation:"ESP", pos:"CM", goals:11, assists:13, passes:90, dribbles:71, rating:87, col:["#1a2030","#7ab6e0"] },
+  { name:"Mohamed Salah",    club:"Liverpool FC",     nation:"EGY", pos:"RW", goals:28, assists:15, passes:73, dribbles:76, rating:89, col:["#2a1a1a","#e06060"] },
+  { name:"Harry Kane",       club:"Bayern Munich",    nation:"ENG", pos:"ST", goals:33, assists:12, passes:77, dribbles:55, rating:88, col:["#1a1e2a","#8090e0"] },
+];
+
+const matches = [
+  { home:"Real Madrid",     away:"FC Barcelona",   hs:2, as:1, league:"La Liga",           status:"LIVE", min:"67'" },
+  { home:"Man City",        away:"Liverpool",       hs:1, as:1, league:"Premier League",    status:"LIVE", min:"45'" },
+  { home:"Bayern Munich",   away:"PSG",             hs:3, as:1, league:"Champions League",  status:"FT"  },
+  { home:"Arsenal",         away:"Chelsea",         hs:2, as:0, league:"Premier League",    status:"FT"  },
+  { home:"Inter Milan",     away:"Juventus",        hs:1, as:2, league:"Serie A",           status:"FT"  },
+  { home:"Atletico Madrid", away:"Sevilla",         hs:0, as:0, league:"La Liga",           status:"20:45" },
+  { home:"Borussia Dortmund",away:"Leipzig",        hs:1, as:3, league:"Bundesliga",        status:"FT"  },
+  { home:"Napoli",          away:"AC Milan",        hs:2, as:2, league:"Serie A",           status:"18:00" },
+];
+
+// ── CURRENT USER ──────────────────────────────────────────────────────
+let currentUser = JSON.parse(localStorage.getItem("flh_user") || "null");
+
+function initials(n){ return n.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase(); }
+
+// ── NAVIGATION ────────────────────────────────────────────────────────
+function switchSection(id) {
+  document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
+  document.getElementById("section-" + id).classList.add("active");
+  document.getElementById("tab-" + id).classList.add("active");
+  if (id === "profile") renderProfile();
+}
+
+// ── TOP 10 ────────────────────────────────────────────────────────────
+function renderTop10() {
+  const grid = document.getElementById("playerGrid");
+  grid.innerHTML = players.map((p, i) => `
+    <div class="player-card" title="Click to ask AI about ${p.name}" onclick="aiAboutPlayer('${p.name}')">
+      <div class="rank-num">${String(i+1).padStart(2,"0")}</div>
+      <div class="avatar" style="background:${p.col[0]};color:${p.col[1]}">${initials(p.name)}</div>
+      <div class="player-name">${p.name}</div>
+      <div class="player-meta">${p.club} &middot; ${p.pos}</div>
+      <div class="stat-pills">
+        <span class="pill pill-dim">${p.nation}</span>
+        <span class="pill pill-green">${p.goals}G</span>
+        <span class="pill pill-gold">${p.assists}A</span>
+      </div>
+      <div class="rating-bar">
+        <div class="rating-fill" style="width:${p.rating}%"></div>
+      </div>
+      <div class="rating-label"><span>Rating</span><span>${p.rating}</span></div>
+    </div>
+  `).join("");
+
+  // Populate registration favourite select
+  const fav = document.getElementById("reg-fav");
+  if (fav) {
+    fav.innerHTML = '<option value="">Select player</option>' +
+      players.map(p => `<option>${p.name}</option>`).join("");
+  }
+}
+
+function aiAboutPlayer(name) {
+  switchSection("ai");
+  setTimeout(() => quickAsk("Tell me about " + name + " — his strengths, playing style, and recent form"), 100);
+}
+
+// ── LIVE SCORES ───────────────────────────────────────────────────────
+function renderMatches() {
+  document.getElementById("matchGrid").innerHTML = matches.map(m => {
+    const statusClass = m.status === "LIVE" ? "status-live" : m.status === "FT" ? "status-ft" : "status-up";
+    const statusLabel = m.status === "LIVE" ? `● LIVE ${m.min}` : m.status;
+    const showScore   = m.status === "LIVE" || m.status === "FT";
+    return `
+      <div class="match-card">
+        <div class="match-league">${m.league}</div>
+        <div class="match-body">
+          <div class="match-team">
+            <div class="team-icon" style="background:rgba(0,200,83,0.1);color:var(--green)">${initials(m.home)}</div>
+            <div class="team-label">${m.home}</div>
+          </div>
+          <div class="match-score-wrap">
+            ${showScore
+              ? `<div class="match-score">${m.hs} – ${m.as}</div>`
+              : `<div style="font-size:12px;color:var(--muted);margin-bottom:4px">vs</div>`}
+            <span class="match-status ${statusClass}">${statusLabel}</span>
+          </div>
+          <div class="match-team">
+            <div class="team-icon" style="background:rgba(245,197,24,0.1);color:var(--accent)">${initials(m.away)}</div>
+            <div class="team-label">${m.away}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+// ── COMPARE ───────────────────────────────────────────────────────────
+function initCompare() {
+  const opts = players.map((p,i) => `<option value="${i}">${p.name}</option>`).join("");
+  document.getElementById("cmp1").innerHTML = opts;
+  document.getElementById("cmp2").innerHTML = opts;
+  document.getElementById("cmp2").value = "1";
+  renderCompare();
+}
+
+function renderCompare() {
+  const p1 = players[+document.getElementById("cmp1").value];
+  const p2 = players[+document.getElementById("cmp2").value];
+  const stats = [
+    { label:"Goals",    key:"goals",    max:40  },
+    { label:"Assists",  key:"assists",  max:20  },
+    { label:"Passing %",key:"passes",  max:100 },
+    { label:"Dribbles", key:"dribbles", max:100 },
+    { label:"Rating",   key:"rating",  max:100 },
+  ];
+  function winsCount(a, b) { return stats.filter(s => a[s.key] > b[s.key]).length; }
+  const w1 = winsCount(p1,p2) >= 3, w2 = winsCount(p2,p1) >= 3;
+
+  function cardHTML(p, opp, isWin) {
+    return `
+      <div class="compare-col ${isWin ? "winner" : ""}">
+        ${isWin ? `<div class="winner-badge">⚽ Winner</div>` : ""}
+        <div class="cmp-player-head">
+          <div class="avatar" style="background:${p.col[0]};color:${p.col[1]};width:44px;height:44px;font-size:14px">${initials(p.name)}</div>
+          <div>
+            <div style="font-weight:700;font-size:15px">${p.name}</div>
+            <div style="font-size:12px;color:var(--muted)">${p.club} &middot; ${p.pos}</div>
+          </div>
+        </div>
+        ${stats.map(s => {
+          const win = p[s.key] >= opp[s.key];
+          const pct  = Math.round((p[s.key] / s.max) * 100);
+          return `
+            <div class="stat-cmp-row">
+              <div class="stat-cmp-label">
+                <span>${s.label}</span>
+                <strong>${p[s.key]}</strong>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill ${win ? "bar-win" : "bar-lose"}" style="width:${pct}%"></div>
+              </div>
+            </div>`;
+        }).join("")}
+      </div>`;
+  }
+
+  document.getElementById("compareGrid").innerHTML =
+    cardHTML(p1, p2, w1) + cardHTML(p2, p1, w2);
+}
+
+// ── AI CHAT ───────────────────────────────────────────────────────────
+function addMsg(text, role) {
+  const box = document.getElementById("aiMessages");
+  const placeholder = box.querySelector(".msg-placeholder");
+  if (placeholder) placeholder.remove();
+  const div = document.createElement("div");
+  div.className = "msg msg-" + role;
+  div.textContent = text;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+  return div;
+}
+
+function showTyping() {
+  const box = document.getElementById("aiMessages");
+  const div = document.createElement("div");
+  div.className = "typing-indicator";
+  div.id = "typing";
+  div.innerHTML = `<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>`;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById("typing");
+  if (t) t.remove();
+}
+
+async function sendAI() {
+  const input = document.getElementById("aiInput");
+  const q = input.value.trim();
+  if (!q) return;
+  input.value = "";
+  addMsg(q, "user");
+  showTyping();
+
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 1000,
+        system: "You are a passionate football (soccer) expert AI assistant inside Football Legends Hub. Answer questions about players, clubs, tactics, transfers, records, and football history. Keep answers concise (under 130 words), enthusiastic, and factual. Use a friendly, knowledgeable tone.",
+        messages: [{ role: "user", content: q }]
+      })
     });
-  </script>
+    const d = await res.json();
+    removeTyping();
+    const text = d.content?.find(c => c.type === "text")?.text || "Sorry, I could not get a response.";
+    addMsg(text, "ai");
+  } catch (err) {
+    removeTyping();
+    addMsg("Connection error. Please check your internet and try again.", "ai");
+  }
+}
+
+function quickAsk(q) {
+  document.getElementById("aiInput").value = q;
+  sendAI();
+}
+
+// ── PROFILE / AUTH ────────────────────────────────────────────────────
+function renderProfile() {
+  const el = document.getElementById("profileContent");
+  if (currentUser) {
+    document.getElementById("header-user-label").textContent = currentUser.name.split(" ")[0];
+    el.innerHTML = `
+      <div class="profile-banner">
+        <div class="profile-avatar">${initials(currentUser.name)}</div>
+        <div class="profile-info">
+          <h3>${currentUser.name}</h3>
+          <p>${currentUser.email}</p>
+        </div>
+        <span class="verified-chip">✓ Member</span>
+      </div>
+      <div class="profile-section-card">
+        <h4>Fan preferences</h4>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Favourite player</label>
+            <select id="pref-player">${players.map(p=>`<option ${p.name===currentUser.favPlayer?"selected":""}>${p.name}</option>`).join("")}</select>
+          </div>
+          <div class="form-group">
+            <label>Favourite position</label>
+            <select id="pref-pos">
+              ${["Goalkeeper","Defender","Midfielder","Forward"].map(p=>`<option ${p===currentUser.pos?"selected":""}>${p}</option>`).join("")}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Team name</label>
+            <input type="text" id="pref-team" value="${currentUser.team||""}" placeholder="FC Legends United" />
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <input type="text" id="pref-country" value="${currentUser.country||""}" placeholder="India" />
+          </div>
+        </div>
+        <button class="btn btn-primary" style="width:auto;padding:10px 24px;margin-top:6px" onclick="saveProfile()">Save changes</button>
+        <div id="save-msg" style="margin-top:8px;font-size:13px;color:var(--green);display:none">✅ Profile saved!</div>
+      </div>
+      <button class="btn btn-danger" onclick="logout()">Log out</button>`;
+  } else {
+    document.getElementById("header-user-label").textContent = "Login";
+    el.innerHTML = `
+      <div class="auth-wrap">
+        <div class="auth-card">
+          <div class="auth-tabs">
+            <button class="auth-tab active" id="at-login" onclick="switchAuth('login')">Log in</button>
+            <button class="auth-tab" id="at-signup" onclick="switchAuth('signup')">Sign up</button>
+          </div>
+          <div id="auth-login-form">
+            <div class="form-group"><label>Email</label><input type="email" id="li-email" placeholder="you@email.com" /></div>
+            <div class="form-group"><label>Password</label><input type="password" id="li-pass" placeholder="••••••••" /></div>
+            <button class="btn btn-primary" onclick="login()">Log in</button>
+            <div id="li-err" style="margin-top:10px;font-size:13px;color:var(--danger);display:none"></div>
+          </div>
+          <div id="auth-signup-form" style="display:none">
+            <div class="form-group"><label>Full name</label><input type="text" id="su-name" placeholder="Sathish Kumar" /></div>
+            <div class="form-group"><label>Email</label><input type="email" id="su-email" placeholder="you@email.com" /></div>
+            <div class="form-group"><label>Password</label><input type="password" id="su-pass" placeholder="Min 6 characters" /></div>
+            <button class="btn btn-primary" onclick="signup()">Create account</button>
+            <div id="su-err" style="margin-top:10px;font-size:13px;color:var(--danger);display:none"></div>
+          </div>
+        </div>
+      </div>`;
+  }
+}
+
+function switchAuth(tab) {
+  document.getElementById("auth-login-form").style.display  = tab==="login"  ? "block" : "none";
+  document.getElementById("auth-signup-form").style.display = tab==="signup" ? "block" : "none";
+  document.getElementById("at-login").classList.toggle("active",  tab==="login");
+  document.getElementById("at-signup").classList.toggle("active", tab==="signup");
+}
+
+function login() {
+  const email = document.getElementById("li-email").value.trim();
+  const pass  = document.getElementById("li-pass").value;
+  const err   = document.getElementById("li-err");
+  if (!email || !pass) { err.textContent="Please fill in all fields."; err.style.display="block"; return; }
+  // Simulated auth (replace with real backend)
+  const stored = JSON.parse(localStorage.getItem("flh_users") || "{}");
+  if (stored[email] && stored[email].pass === pass) {
+    currentUser = { ...stored[email].data, email };
+    localStorage.setItem("flh_user", JSON.stringify(currentUser));
+    renderProfile();
+  } else {
+    err.textContent = "Invalid email or password.";
+    err.style.display = "block";
+  }
+}
+
+function signup() {
+  const name  = document.getElementById("su-name").value.trim();
+  const email = document.getElementById("su-email").value.trim();
+  const pass  = document.getElementById("su-pass").value;
+  const err   = document.getElementById("su-err");
+  if (!name || !email || !pass) { err.textContent="Please fill in all fields."; err.style.display="block"; return; }
+  if (pass.length < 6) { err.textContent="Password must be at least 6 characters."; err.style.display="block"; return; }
+  const users = JSON.parse(localStorage.getItem("flh_users") || "{}");
+  users[email] = { pass, data: { name, favPlayer: players[0].name, pos:"Forward", team:"", country:"" } };
+  localStorage.setItem("flh_users", JSON.stringify(users));
+  currentUser = { name, email, favPlayer: players[0].name, pos:"Forward", team:"", country:"" };
+  localStorage.setItem("flh_user", JSON.stringify(currentUser));
+  renderProfile();
+}
+
+function saveProfile() {
+  currentUser.favPlayer = document.getElementById("pref-player").value;
+  currentUser.pos       = document.getElementById("pref-pos").value;
+  currentUser.team      = document.getElementById("pref-team").value;
+  currentUser.country   = document.getElementById("pref-country").value;
+  localStorage.setItem("flh_user", JSON.stringify(currentUser));
+  const users = JSON.parse(localStorage.getItem("flh_users") || "{}");
+  if (users[currentUser.email]) {
+    users[currentUser.email].data = { name:currentUser.name, favPlayer:currentUser.favPlayer, pos:currentUser.pos, team:currentUser.team, country:currentUser.country };
+    localStorage.setItem("flh_users", JSON.stringify(users));
+  }
+  document.getElementById("save-msg").style.display = "block";
+  setTimeout(() => { const m=document.getElementById("save-msg"); if(m) m.style.display="none"; }, 2500);
+}
+
+function logout() {
+  currentUser = null;
+  localStorage.removeItem("flh_user");
+  renderProfile();
+}
+
+function submitRegistration() {
+  const name    = document.getElementById("reg-name").value.trim();
+  const email   = document.getElementById("reg-email").value.trim();
+  const pos     = document.getElementById("reg-pos").value;
+  const fav     = document.getElementById("reg-fav").value;
+  const team    = document.getElementById("reg-team").value.trim();
+  const country = document.getElementById("reg-country").value.trim();
+  const msg     = document.getElementById("reg-msg");
+  if (!name || !email) { msg.style.color="var(--danger)"; msg.textContent="⚠️ Name and email are required."; msg.style.display="block"; return; }
+  msg.style.color = "var(--green)";
+  msg.textContent = `✅ Registered successfully! Welcome, ${name}. You're now part of Football Legends Hub.`;
+  msg.style.display = "block";
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────
+renderTop10();
+renderMatches();
+initCompare();
+renderProfile();
+</script>
 </body>
 </html>
